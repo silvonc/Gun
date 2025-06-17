@@ -1,0 +1,1 @@
+for file in requirements/*.txt; do pip install -r "$file"; done
