@@ -1,0 +1,61 @@
+<!-- templates/home.html - Your home page -->
+{% extends 'base.html' %}
+
+{% block title %}Acasa - Gun Test App{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Bine ati venit la Gun Test App!</h1>
+        <p class="lead">Merge! Hai s-o urcam pe cloud.</p>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Recent Companies</h5>
+                        <a href="{% url 'add_company' %}" class="btn btn-sm btn-primary">Adauga Companie</a>
+                    </div>
+                    <div class="card-body">
+                        {% if companies %}
+                            <ul class="list-group list-group-flush">
+                                {% for company in companies %}
+                                    <li class="list-group-item">
+                                        <strong>{{ company.name }}</strong><br>
+                                        <small class="text-muted">{{ company.email }}</small>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">No companies yet. <a href="{% url 'add_company' %}">Am adaugat una!</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5>Recent Contacts</h5>
+                        <a href="{% url 'add_contact' %}" class="btn btn-sm btn-primary">Adauga Contact</a>
+                    </div>
+                    <div class="card-body">
+                        {% if contacts %}
+                            <ul class="list-group list-group-flush">
+                                {% for contact in contacts %}
+                                    <li class="list-group-item">
+                                        <strong>{{ contact.name }}</strong><br>
+                                        <small class="text-muted">{{ contact.company.name }} • {{ contact.phone }}</small>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">No contacts yet. <a href="{% url 'add_contact' %}">Am adaugat unul!</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
