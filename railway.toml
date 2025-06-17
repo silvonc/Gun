@@ -2,4 +2,4 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "cd Gun && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi"
+startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi"
