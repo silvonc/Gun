@@ -50,4 +50,17 @@ DATABASES = {
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+import os
+
+# Add this near the end of the file
+PORT = int(os.environ.get('PORT', 8000))
+
+# Make sure ALLOWED_HOSTS includes your Railway domain
+ALLOWED_HOSTS = [
+    'gun-production.up.railway.app',
+    '.railway.app',
+    'localhost',
+    '127.0.0.1',
+]
+
 
