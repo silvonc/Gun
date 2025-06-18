@@ -48,3 +48,5 @@ DATABASES = {
 # Static files
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+release="gun@1.0.0",
