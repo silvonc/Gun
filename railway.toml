@@ -6,4 +6,5 @@ builder = "nixpacks"
 # deploy normal fara superuser startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
 
 [deploy]
-startCommand = "python manage.py migrate && python manage.py check_users && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
+startCommand = "python manage.py migrate && python manage.py shell -c \"from django.contrib.auth.models import User; u = User.objects.get(username='admin'); u.set_password('newpassword123'); u.save(); print('Password updated')\" && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
+# test which users exist "python manage.py migrate && python manage.py check_users && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
