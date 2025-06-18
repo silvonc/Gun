@@ -17,23 +17,19 @@ Including another URLconf
 from django.contrib import admin
 """
 
+
+
+
+from django.contrib import admin
 from django.urls import path, include
 from gun.apps.core import views  # Import your view here
 
-
 urlpatterns = [
-    path('unmarekkt/', views.hello_world, name='hello_world'),
- path('__debug__/', include('debug_toolbar.urls')),
-    # Other URLs
-]
-
-from django.urls import path
-# from . import views
-
-urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('add-company/', views.add_company, name='add_company'),
     path('add-contact/', views.add_contact, name='add_contact'),
+    path('unmarekkt/', views.hello_world, name='hello_world'),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
-#path('', include('gun.apps.core.urls')),
