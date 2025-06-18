@@ -30,7 +30,8 @@ SESSION_COOKIE_SECURE = True
 sentry_sdk.init(
     dsn=config("SENTRY_DSN", default=""),
     environment=gun_ENVIRONMENT,
-    release="gun@%s" % gun.__version__,
+  #  release="gun@%s" % gun.__version__,
+    release="gun@1.0.0",
     integrations=[DjangoIntegration()],
 )
 # ==============================================================================
@@ -49,4 +50,4 @@ DATABASES = {
 MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-release="gun@1.0.0",
+
