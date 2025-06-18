@@ -1,6 +1,5 @@
-
 [build]
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT"
+startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"

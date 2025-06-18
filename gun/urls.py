@@ -26,4 +26,5 @@ urlpatterns = [
     path('', include('gun.apps.core.urls')),  # This includes the core app URLs
     path('unmarekkt/', views.hello_world, name='hello_world'),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('health/', views.health, name='health'),
 ]

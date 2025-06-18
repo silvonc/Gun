@@ -45,3 +45,6 @@ def add_contact(request):
         form = ContactForm()
 
     return render(request, 'add_contact.html', {'form': form})
+
+def health(request):
+    return HttpResponse("OK")
