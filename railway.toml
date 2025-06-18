@@ -1,10 +1,11 @@
 [build]
 builder = "nixpacks"
 
+[deploy]
+startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
+
 
 # create superuser for staging "python manage.py migrate && python manage.py createsuperuser --noinput --username admin --email silvia@gun.ro && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
 # deploy normal fara superuser startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
-
-[deploy]
-startCommand = "python manage.py migrate && python manage.py shell -c \"from django.contrib.auth.models import User; u = User.objects.get(username='admin'); u.set_password('newpassword123'); u.email='silvia@gun.ro'; u.save(); print('Password and email updated')\" && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
+# reset parola superuser startCommand = "python manage.py migrate && python manage.py shell -c \"from django.contrib.auth.models import User; u = User.objects.get(username='admin'); u.set_password('newpassword123'); u.email='silvia@gun.ro'; u.save(); print('Password and email updated')\" && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"
 # test which users exist "python manage.py migrate && python manage.py check_users && python manage.py collectstatic --noinput && gunicorn gun.wsgi --bind 0.0.0.0:$PORT --log-level debug --access-logfile - --error-logfile - --capture-output"

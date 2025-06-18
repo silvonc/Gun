@@ -158,3 +158,7 @@ MEDIA_ROOT = BASE_DIR.parent.parent / "media"
 # ==============================================================================
 
 gun_ENVIRONMENT = config("gun_ENVIRONMENT", default="local")
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

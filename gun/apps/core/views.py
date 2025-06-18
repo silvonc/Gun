@@ -1,16 +1,12 @@
-from django.shortcuts import render
-
 from django.http import HttpResponse
-
-def hello_world(request):
-    return HttpResponse("Kk-m-as in el de tutorial!")
-
-
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .models import Company, Contact
 from .forms import CompanyForm, ContactForm
 
+def hello_world(request):
+    return HttpResponse("Buna silvonc, iata aplicatia Gun!")
 
 def home(request):
     companies = Company.objects.all()[:5]  # Show last 5 companies
@@ -20,7 +16,7 @@ def home(request):
         'contacts': contacts
     })
 
-
+@login_required
 def add_company(request):
     if request.method == 'POST':
         form = CompanyForm(request.POST)
@@ -33,7 +29,7 @@ def add_company(request):
 
     return render(request, 'add_company.html', {'form': form})
 
-
+@login_required
 def add_contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
